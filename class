@@ -1,0 +1,25 @@
+public class practiceClass 
+{
+    public static void test(List<String> names)
+    {
+        List<Account> accList = [Select Id,Name,Phone from Account where Phone != null];
+        List<Account> acctList = new List<Account>();
+        if(!names.isEmpty())
+        {
+            for(Account acc : accList)
+            {
+                 String regex = '\\(|\\)';
+                String res  = names.toString();
+                String re = res.replaceAll(regex,'');
+
+                System.debug(re);
+                acc.Description = re;
+                acctList.add(acc);
+            }
+        }
+        if(!acctList.isEmpty())
+        {
+            update acctList;
+        }
+    }
+}
